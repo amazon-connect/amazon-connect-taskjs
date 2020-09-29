@@ -1,0 +1,46 @@
+{
+  "name": "@amzn/amazon-connect-taskjs",
+  "version": "1.0.0",
+  "description": "Provides task support to AmazonConnect customers",
+  "main": "dist/amazon-connect-task.js",
+  "scripts": {
+    "test": "jest",
+    "release": "jest && webpack --mode=production",
+    "devo": "jest && webpack --mode=development",
+    "watch": "webpack --watch",
+    "dev": "webpack --mode=development && webpack --watch",
+    "clean": "rm -rf build/ node_modules build",
+    "release-watch": "npm run release && npm run watch"
+  },
+  "browserslist": [
+    "Firefox ESR",
+    "firefox > 67",
+    "chrome > 62",
+    "edge > 78",
+    "opera > 49"
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "text",
+      "cobertura",
+      "lcov"
+    ],
+    "coverageDirectory": "build/jest-coverage"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-webpack-plugin": "^2.1.0",
+    "jest": "^26.4.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "npm-pretty-much": {
+    "runRelease": "always"
+  }
+}
