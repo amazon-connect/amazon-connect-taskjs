@@ -1,4 +1,4 @@
-import { TaskSessionObject } from "./core/taskSession";
+import { TaskSessionObject } from './core/taskSession';
 
 global.connect = global.connect || {};
 connect.TaskSession = TaskSessionObject;
