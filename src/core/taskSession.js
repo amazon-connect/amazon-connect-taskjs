@@ -22,6 +22,14 @@ class TaskSession {
     this.controller.subscribe(TASK_EVENTS.TRANSFER_INITIATED, callback);
   }
 
+  onTaskExpiring(callback) {
+    this.controller.subscribe(TASK_EVENTS.TASK_EXPIRING, callback);
+  }
+
+  onTaskExpired(callback) {
+    this.controller.subscribe(TASK_EVENTS.TASK_EXPIRED, callback);
+  }
+
   onConnectionBroken(callback) {
     this.controller.subscribe(TASK_EVENTS.CONNECTION_BROKEN, callback);
   }
