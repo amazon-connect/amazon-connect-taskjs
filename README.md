@@ -107,3 +107,30 @@ Subscribe a method to be invoked when any one of the above events has occurred.
 ```js
 taskSession.onMessage((message) => console.log("The following event has occurred:", message.ContentType))
 ```
+
+## Methods
+
+### `agent.createTask()`
+
+Create a new task.
+
+```js
+const newTask = {
+    name: "string", //required, max len: 512
+    description: "string", //optional, max len: 4096
+    endpoint: endpointObject, //required, can be retrieved via `agent.getEndpoints()`. Agent and queue endpoints supported.
+    previousContactId: "string", //optional, the previous contact ID for a linked task
+    references: { //optional
+    	"reference name": { // string, max len: 4096
+    		type: "URL" //required, currently only "URL" is supported as a reference type,
+    		value: "https://www.amazon.com" //required, string, max len: 4096
+    	}	
+    }
+};
+
+agent.createTask(newTask, {
+	success: function(data) { console.log("Created a task with contact id: ", data.contactId) },
+	failure: function(err) { /* ... */ }
+});
+
+```

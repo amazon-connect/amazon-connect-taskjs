@@ -18,7 +18,8 @@
       "module": true,
       "require": true,
       "process": true,
-      "connect": true
+      "connect": true,
+      "AWS": true
   },
   "parserOptions": {
       "ecmaVersion": 2017,
