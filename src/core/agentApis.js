@@ -1,3 +1,7 @@
+const ReferenceType = connect.makeEnum([
+  'URL'
+]);
+
 const createTask = function(taskContact, callbacks) {
   connect.assertNotNull(taskContact, 'Task contact object');
   connect.assertNotNull(taskContact.name, 'Task name');
@@ -11,4 +15,4 @@ const createTask = function(taskContact, callbacks) {
   client.call(connect.ClientMethods.CREATE_TASK_CONTACT, taskContact, callbacks);
 };
 
-export { createTask };
+export { createTask, ReferenceType };
