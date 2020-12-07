@@ -134,3 +134,10 @@ agent.createTask(newTask, {
 });
 
 ```
+
+## Enumerations
+
+### `connect.ReferenceType`
+This enumeration lists the different reference types for a task. Currently there is only one reference type, URL.
+
+* `ReferenceType.URL`: A URL reference.
