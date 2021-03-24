@@ -49,6 +49,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-webpack-plugin": "^2.1.0",
     "jest": "^26.4.2",
+    "ssri": ">=8.0.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
