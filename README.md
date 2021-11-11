@@ -127,7 +127,8 @@ const newTask = {
     		type: "URL" //required, currently only "URL" is supported as a reference type,
     		value: "https://www.amazon.com" //required, string, max len: 4096
     	}	
-    }
+    },
+    scheduledTime: "number" //optional, UTC timestamp in seconds when the task should be delivered.
 };
 
 agent.createTask(newTask, {
