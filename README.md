@@ -124,7 +124,7 @@ const newTask = {
     previousContactId: "string", //optional, the previous contact ID for a linked task
     references: { //optional
     	"reference name": { // string, max len: 4096
-    		type: "URL" //required, currently only "URL" is supported as a reference type,
+    		type: "URL", //required, currently only "URL" is supported as a reference type,
     		value: "https://www.amazon.com" //required, string, max len: 4096
     	}	
     },
