@@ -120,12 +120,29 @@ Create a new task.
 const newTask = {
     name: "string", //required, max len: 512
     description: "string", //optional, max len: 4096
-    endpoint: endpointObject, //required, can be retrieved via `agent.getEndpoints()`. Agent and queue endpoints supported.
+    endpoint: endpointObject, //required for non templated tasks, can be retrieved via `agent.getEndpoints()`. Agent and queue endpoints supported.
+    taskTemplateId: "string", //required for templated tasks, ID of the template the task is created from. Template should belong to connect instance
     previousContactId: "string", //optional, the previous contact ID for a linked task
-    references: { //optional
-    	"reference name": { // string, max len: 4096
-    		type: "URL", //required, currently only "URL" is supported as a reference type,
+    references: { //optional. Only URL references are supported for non templated tasks
+    	"reference name 1": { 
+    		type: "URL" //required, string, one of connect.ReferenceType types
     		value: "https://www.amazon.com" //required, string, max len: 4096
+    	},
+        "reference name 2": {
+    		type: "EMAIL" //required, string, one of connect.ReferenceType types
+    		value: "example@abc.com" //required, string, max len: 4096
+    	},	
+        "reference name 3": { 
+    		type: "NUMBER" //required, one of connect.ReferenceType types
+    		value: 1000 //required, number
+    	},
+        "reference name 4": {
+            type: "DATE", //required, string, one of connect.ReferenceType types
+            value: 1649961230 //required, number
+        },
+        "reference name 5": { 
+    		type: "STRING" //required, string, one of connect.ReferenceType types
+    		value: "example@abc.com" //required, string, max len: 4096
     	}	
     },
     scheduledTime: "number" //optional, UTC timestamp in seconds when the task should be delivered.
@@ -135,13 +152,75 @@ agent.createTask(newTask, {
 	success: function(data) { console.log("Created a task with contact id: ", data.contactId) },
 	failure: function(err) { /* ... */ }
 });
+```
+
+### `agent.updateContact()`
+
+Update a task contact created from a template.
+
+```js
+const updatedTaskData = {
+    contactId: "string", // required, task contact identifier
+    name:  "string", // optional, task name
+    description: "string", // optional, task description
+    references: { //optional, used to specify updated template fields
+        "reference name": { // string
+    		type: "NUMBER" //required, one of connect.ReferenceType types
+    		value: 1001 //required, number
+    	}
+        //see more examples in agent.createTask() description
+    }
+};
+
+agent.updateContact(updatedTaskData, {
+	success: function() { console.log("The task updated successfully") },
+	failure: function(err) { /* ... */ }
+});
 
 ```
+
+### `agent.listTaskTemplates()`
+
+Load a list of task templates that belong to a connect instance
+
+```js
+
+const queryParams = {// required
+    status: 'active', //optional, string, can be either 'active' or 'inactive'
+    maxResults: 50 //optional, number, max value of 100
+};
+
+agent.listTaskTemplates(queryParams, {
+	success: function(data) { console.log("List of task templates loaded successfully", data) },
+	failure: function(err) { /* ... */ }
+});
+
+```
+
+
+### `agent.getTaskTemplate()`
+
+Load a template data, including fields, default values and constraints 
+
+```js
+
+const templateParams = {// required
+    id: 'string', //required, string, template ID, template should belong to connect instance
+    version: 'string' //optional, string, task template version
+};
+
+agent.getTaskTemplate(templateParams, {
+	success: function(data) { console.log("Template data loaded successfully", templateParams.id, data) },
+	failure: function(err) { /* ... */ }
+});
+
+```
+
 
 ## Enumerations
 
 ### `connect.ReferenceType`
-This enumeration lists the different reference types for a task. Currently there is only one reference type, URL.
+This enumeration lists the different reference types for a task. Currently supported types: URL, EMAIL, NUMBER, STRING, DATE.
 
 * `ReferenceType.URL`: A URL reference.
 
