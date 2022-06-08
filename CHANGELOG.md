@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## 1.2.0
+## 2.0.0
 Added functions:
 * `agent.updateContact` method to update a task contact created from a template.
 * `agent.listTaskTemplates` method to load a list of task templates that belong to a connect instance.
@@ -9,8 +9,3 @@ Added functions:
 Other changes:
 * `agent.createTask` method supports new parameteres and allows to create templated tasks. See README.md for more details.
 * `connect.ReferenceType` new reference types supported.
-
-
-
-
-
