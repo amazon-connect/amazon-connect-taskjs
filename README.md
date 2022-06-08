@@ -18,6 +18,8 @@ $ git clone https://github.com/amazon-connect/amazon-connect-taskjs
 
 [Amazon Connect Streams](https://github.com/aws/amazon-connect-streams) is required to use TaskJS. Ensure you import TaskJS after Streams.
 
+TaskJs v2.0 requires Streams v2.2 or later.
+
 # Building
 1. Install latest LTS version of [NodeJS](https://nodejs.org)
 2. Checkout this package into workspace and navigate to root folder
@@ -124,23 +126,23 @@ const newTask = {
     taskTemplateId: "string", //required for templated tasks, ID of the template the task is created from. Template should belong to connect instance
     previousContactId: "string", //optional, the previous contact ID for a linked task
     references: { //optional. Only URL references are supported for non templated tasks
-    	"reference name 1": { 
-    		type: "URL" //required, string, one of connect.ReferenceType types
+    	"reference name 1": { // string, max len: 4096
+    		type: "URL" //required, string, one of connect.ReferenceType types, 
     		value: "https://www.amazon.com" //required, string, max len: 4096
     	},
-        "reference name 2": {
+        "reference name 2": { // string, max len: 4096
     		type: "EMAIL" //required, string, one of connect.ReferenceType types
     		value: "example@abc.com" //required, string, max len: 4096
     	},	
-        "reference name 3": { 
+        "reference name 3": { // string, max len: 4096
     		type: "NUMBER" //required, one of connect.ReferenceType types
     		value: 1000 //required, number
     	},
-        "reference name 4": {
+        "reference name 4": { // string, max len: 4096
             type: "DATE", //required, string, one of connect.ReferenceType types
             value: 1649961230 //required, number
         },
-        "reference name 5": { 
+        "reference name 5": { // string, max len: 4096
     		type: "STRING" //required, string, one of connect.ReferenceType types
     		value: "example@abc.com" //required, string, max len: 4096
     	}	
