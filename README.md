@@ -188,7 +188,7 @@ Load a list of task templates that belong to a connect instance
 ```js
 
 const queryParams = {// required
-    status: 'active', //optional, string, can be either 'active' or 'inactive'
+    status: 'ACTIVE', //optional, string, can be either 'ACTIVE' or 'INACTIVE'
     maxResults: 50 //optional, number, max value of 100
 };
 
