@@ -1,5 +1,6 @@
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index',
@@ -28,6 +29,14 @@ module.exports = {
   plugins: [
     new ESLintPlugin({
       context: 'src',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/index.d.ts',
+          to: 'index.d.ts',
+        },
+      ],
     }),
   ],
 };
