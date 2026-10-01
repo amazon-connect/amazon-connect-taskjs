@@ -156,6 +156,9 @@ agent.createTask(newTask, {
 });
 ```
 
+**Note:** Do not pass `endpoint` together with `taskTemplateId` when the template has
+self-assign enabled. The service rejects the request.
+
 ### `agent.updateContact()`
 
 Update a task contact created from a template.
